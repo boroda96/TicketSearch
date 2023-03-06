@@ -16,7 +16,7 @@ public class TicketRepository {
     }
 
     public Ticket[] getTickets() {
-        return tickets;
+        return tickets.clone();
     }
 
     public void removeById(int id) {
