@@ -31,15 +31,28 @@ public class TicketManagerTest {
     }
 
     @Test
-    public void shouldAddALlTickets() {
+    public void shouldFindTicketsPriceFromSVXtoCMB() {
         Ticket[] expected = {t7, t2, t6};
         Ticket[] actual = manager.findAllTickets("SVX", "CMB");
         Assertions.assertArrayEquals(expected, actual);
-
     }
 
     @Test
-    public void shouldTicketsFromSVXToEZE() {
+    public void shouldFindTicketsPriceFromSVXtoHRG() {
+        Ticket[] expected = {t5};
+        Ticket[] actual = manager.findAllTickets("SVX", "HRG");
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldNotFindPriceTicket() {
+        Ticket[] expected = {};
+        Ticket[] actual = manager.findAllTickets("HRG", "SVX");
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldTicketsTimeFromSVXToEZE() {
         Ticket[] expected = {t3};
         Ticket[] actual = manager.findAll("SVX", "EZE", comparator);
         Assertions.assertArrayEquals(expected, actual);
@@ -47,9 +60,16 @@ public class TicketManagerTest {
     }
 
     @Test
-    public void shouldTicketsFromSVXToCMB() {
+    public void shouldTicketsTimeFromSVXToCMB() {
         Ticket[] expected = {t6, t7, t2};
         Ticket[] actual = manager.findAll("SVX", "CMB", comparator);
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldNotFindTicketsTime() {
+        Ticket[] expected = {};
+        Ticket[] actual = manager.findAll("SVX", "IST", comparator);
         Assertions.assertArrayEquals(expected, actual);
     }
 
